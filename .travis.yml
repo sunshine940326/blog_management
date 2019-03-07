@@ -19,7 +19,7 @@ cache:
 before_script:
   - git config --global user.name "cherry"
   - git config --global user.email "991939332@qq.com"
-  - git clone --branch gh-pages https://${GH_REF} dist
+  - git clone --branch master https://${GH_REF} dist
 
 script:
   - npm test
