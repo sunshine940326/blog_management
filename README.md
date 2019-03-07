@@ -1,6 +1,6 @@
 # management
 
-> A Vue.js project
+> cherry blog management
 
 ## Build Setup
 
