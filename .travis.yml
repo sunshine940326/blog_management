@@ -3,6 +3,10 @@ install:
 branches:
   only:
   - master
+addons:
+  apt:
+    packages:
+    - sshpass
 language: node_js
 sudo: false
 node_js: stable
@@ -18,6 +22,7 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_517b46f21074_key -iv $encrypted_517b46f21074_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
+- echo -e "Host 118.24.62.205\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 
 script:
 - npm test
@@ -27,7 +32,8 @@ after_success:
 - cp index.html 404.html
 # - rsync -az --delete ./dist/* root@118.24.62.205:/home/test/cherryblog.site # copy dist文件夹下的所有文件
 # - rsync -az -vv --delete -e 'ssh -p 1224' public/ brook@uedsky.com:/var/www/blog
-- ssh -o StrictHostKeyChecking=no 118.24.62.205
+# - ssh -o StrictHostKeyChecking=no 118.24.62.205
+# - sshpass -e ssh  -o stricthostkeychecking=no root@118.24.62.205:/home/test/cherryblog.site
 - rsync -az --delete ./dist/* public/ root@118.24.62.205:/home/test/cherryblog.site
 
 env:
