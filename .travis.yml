@@ -27,7 +27,7 @@ after_success:
 - cp index.html 404.html
 # - rsync -az --delete ./dist/* root@118.24.62.205:/home/test/cherryblog.site # copy dist文件夹下的所有文件
 # - rsync -az -vv --delete -e 'ssh -p 1224' public/ brook@uedsky.com:/var/www/blog
-- rsync -az --delete ./dist/* 'ssh -o stricthostkeychecking=no 118.24.62.205' public/ root@118.24.62.205:/home/test/cherryblog.site
+- rsync -az --delete ./dist/* 'ssh -o StrictHostKeyChecking=no 118.24.62.205' public/ root@118.24.62.205:/home/test/cherryblog.site
 
 env:
   global:
