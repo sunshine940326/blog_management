@@ -14,8 +14,6 @@ cache:
   directories:
   - node_modules
 before_script:
-- git config --global user.name "cherry"
-- git config --global user.email "991939332@qq.com"
 - git pull origin master
 
 before_install:
@@ -34,7 +32,7 @@ after_success:
 # - rsync -az -vv --delete -e 'ssh -p 1224' public/ brook@uedsky.com:/var/www/blog
 # - ssh -o StrictHostKeyChecking=no 118.24.62.205
 # - sshpass -e ssh  -o stricthostkeychecking=no root@118.24.62.205:/home/test/cherryblog.site
-- rsync -az --delete ./dist/* public/ root@118.24.62.205:/home/test/cherryblog.site
+- rsync -az /dist root@118.24.62.205:/home/test/cherryblog.site
 
 env:
   global:
