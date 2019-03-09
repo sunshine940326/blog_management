@@ -1,39 +1,34 @@
 install:
-  - npm install
-
+- npm install
 branches:
   only:
-    - master
-
+  - master
 language: node_js
-
 sudo: false
-
 node_js: stable
-
 cache:
   directories:
-    - node_modules
-
-
+  - node_modules
 before_script:
-  - git config --global user.name "cherry"
-  - git config --global user.email "991939332@qq.com"
-  - git clone --branch master https://${GH_REF} dist
+- git config --global user.name "cherry"
+- git config --global user.email "991939332@qq.com"
+- git pull origin master
+
+before_install:
+- openssl aes-256-cbc -K $encrypted_517b46f21074_key -iv $encrypted_517b46f21074_iv
+  -in id_rsa.enc -out ~/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
 
 script:
-  - npm test
-
+- npm test
 after_success:
-  - npm run build
-  - cd dist
-  - echo "lightmoon.pw" > CNAME
-  - cp index.html 404.html
-  - git add --all .
-  - git commit --message "Automatically update from travis-ci"
-  - git push --quiet --force  "https://${github_setting}@${GH_REF}" master:master
+- npm run build
+- cd dist
+- cp index.html 404.html
+# - rsync -az --delete ./dist/* root@118.24.62.205:/home/test/cherryblog.site # copy dist文件夹下的所有文件
+# - rsync -az -vv --delete -e 'ssh -p 1224' public/ brook@uedsky.com:/var/www/blog
+- rsync -az --delete ./dist/* 'ssh -o stricthostkeychecking=no' public/ root@118.24.62.205://home/test/cherryblog.site
 
-# Note: you should set Environment Variables here or 'Settings' on travis-ci.org
 env:
   global:
-    - GH_REF: github.com/sunshine940326/blog_management.git
+  - GH_REF: github.com/sunshine940326/blog_management.git
