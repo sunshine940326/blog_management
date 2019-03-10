@@ -3,12 +3,7 @@ install:
 branches:
   only:
   - master
-addons:
-  apt:
-    packages:
-    - sshpass
 language: node_js
-sudo: false
 node_js: stable
 cache:
   directories:
@@ -31,7 +26,7 @@ after_success:
 # - ssh -o StrictHostKeyChecking=no 118.24.62.205
 # - sshpass -e ssh  -o stricthostkeychecking=no root@118.24.62.205:/home/test/cherryblog.site
 # - rsync -az --delete ./dist/* root@118.24.62.205:/home/test/cherryblog.site
-- scp -o stricthostkeychecking=no ./dist/ root@118.24.62.205:/home/test/cherryblog.site
+- scp -o stricthostkeychecking=no index.html root@118.24.62.205:/home/test/cherryblog.site
 
 env:
   global:
