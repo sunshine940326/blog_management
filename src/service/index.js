@@ -5,7 +5,7 @@ import router from '@/router'
 
 const baseURL = process.env.NODE_ENV === 'development'
   ? 'http://localhost:3031'
-  : 'http://test.cherryblog.site:3030'
+  : 'https://test.cherryblog.site:3030'
 
 Vue.prototype.$http = axios
 
