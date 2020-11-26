@@ -135,14 +135,7 @@ export default {
           _id: row._id
         }
         await _deleteArticle({ queryParams })
-        const loading = this.$loading({
-          lock: true,
-          text: 'Loading',
-          spinner: 'el-icon-loading',
-          background: 'rgba(0, 0, 0, 0.7)'
-        })
         this.fetchArticles()
-        loading.close()
         this.$notify({
           title: '成功',
           type: 'success',
